@@ -1,0 +1,6 @@
+bin/
+obj/
+.vs/
+**/[Bb]in
+**/[Oo]bj/
+**/.vs/
