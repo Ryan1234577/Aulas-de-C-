@@ -172,6 +172,77 @@ namespace servicehub
 
         }
 
+        private void FrmComponente_Load(object sender, EventArgs e)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = " select * from servicos ";
+            // dr = DataReader
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                dgvServicos.Rows.Add();
+                int linha = dgvServicos.RowCount - 1;
+                dgvServicos.Rows[linha].Cells[0].Value = dr.GetInt32(0);
+                dgvServicos.Rows[linha].Cells[1].Value = dr.GetString(1);
+                dgvServicos.Rows[linha].Cells[2].Value = dr.GetString(2);
+                dgvServicos.Rows[linha].Cells[3].Value = dr.GetDouble(3);
+                dgvServicos.Rows[linha].Cells[4].Value = dr.GetBoolean(4);
+            }
+            dr.Close();
+
+            var cmd_1 = Banco.Abrir();
+            cmd_1.CommandText = "select * from usuarios";
+            var dr_1 = cmd_1.ExecuteReader();
+            while (dr_1.Read())
+            {
+                dgvUsuarios.Rows.Add();
+
+                int linha = dgvUsuarios.RowCount - 1;
+
+                dgvUsuarios.Rows[linha].Cells[0].Value = dr_1.GetInt32(0);
+                dgvUsuarios.Rows[linha].Cells[1].Value = dr_1.GetString(1);
+                dgvUsuarios.Rows[linha].Cells[2].Value = dr_1.GetString(2);
+
+
+            }
+            dr_1.Close();
+
+
+            
+
+
+
+        }
+
+        private void dgvServicos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnsolicitações_Click(object sender, EventArgs e)
+        {
+            var cmd_2 = Banco.Abrir();
+            cmd_2.CommandText = "select * from solicitacoes";
+            var dr_2 = cmd_2.ExecuteReader();
+            while (dr_2.Read())
+            {
+                dtgSolicitação.Rows.Add();
+
+                int linha = dtgSolicitação.RowCount - 1;
+
+                dtgSolicitação.Rows[linha].Cells[0].Value = dr_2.GetInt32(0);
+                dtgSolicitação.Rows[linha].Cells[1].Value = dr_2.GetInt32(1);
+                dtgSolicitação.Rows[linha].Cells[2].Value = dr_2.GetString(2);
+
+
+            }
+            dr_2.Close();
+        }
     }
 
 }

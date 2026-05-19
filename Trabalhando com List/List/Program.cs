@@ -43,12 +43,30 @@ namespace List
             Convocacao.Add("Luiz Henrique");
             Convocacao.Add("Matinelli");
 
+
+            Console.WriteLine(Convocacao.Count);
             foreach (string nome in Convocacao)
             {
                 Console.WriteLine(nome);
             }
 
+            //Adiciona em uma posição específica
+            //nomes.Insert(1, "Maria");
 
+            //Para alterar, usamos o índice da posição.
+            //nomes[0] = "João";
+
+            //Remove pelo valor
+            //nomes.Remove("Carlos");
+
+            //Remove pela posição
+            //nomes.RemoveAt(1);
+
+            //Limpar Lista
+            //nomes.Clear();
+
+            //Quantidade de elementos
+            //Console.WriteLine(nomes.Count);
 
 
 
