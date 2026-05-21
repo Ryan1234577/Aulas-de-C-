@@ -75,11 +75,13 @@
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(413, 34);
+            btnBuscar.Image = Properties.Resources.Zoom_In;
+            btnBuscar.Location = new Point(416, 33);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(103, 43);
+            btnBuscar.Size = new Size(110, 63);
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "B&uscar";
+            btnBuscar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnBuscar.UseVisualStyleBackColor = true;
             // 
             // picImagem
@@ -105,7 +107,7 @@
             txtDescricao.Name = "txtDescricao";
             txtDescricao.PlaceholderText = "Descrição";
             txtDescricao.Size = new Size(405, 23);
-            txtDescricao.TabIndex = 5;
+            txtDescricao.TabIndex = 3;
             // 
             // label3
             // 
@@ -122,7 +124,7 @@
             nudPreco.Location = new Point(111, 156);
             nudPreco.Name = "nudPreco";
             nudPreco.Size = new Size(90, 23);
-            nudPreco.TabIndex = 7;
+            nudPreco.TabIndex = 4;
             // 
             // label4
             // 
@@ -139,7 +141,7 @@
             txtUnidVenda.Name = "txtUnidVenda";
             txtUnidVenda.PlaceholderText = "Unid.Venda";
             txtUnidVenda.Size = new Size(100, 23);
-            txtUnidVenda.TabIndex = 9;
+            txtUnidVenda.TabIndex = 5;
             // 
             // label5
             // 
@@ -165,7 +167,7 @@
             nudEstoqueMinimo.Location = new Point(135, 262);
             nudEstoqueMinimo.Name = "nudEstoqueMinimo";
             nudEstoqueMinimo.Size = new Size(90, 23);
-            nudEstoqueMinimo.TabIndex = 13;
+            nudEstoqueMinimo.TabIndex = 7;
             nudEstoqueMinimo.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // label7
@@ -174,7 +176,7 @@
             label7.Location = new Point(317, 270);
             label7.Name = "label7";
             label7.Size = new Size(93, 15);
-            label7.TabIndex = 14;
+            label7.TabIndex = 8;
             label7.Text = "Classe Desconto";
             // 
             // nudClasseDesconto
@@ -183,43 +185,51 @@
             nudClasseDesconto.Location = new Point(426, 262);
             nudClasseDesconto.Name = "nudClasseDesconto";
             nudClasseDesconto.Size = new Size(90, 23);
-            nudClasseDesconto.TabIndex = 15;
+            nudClasseDesconto.TabIndex = 9;
             // 
             // btnCarregarImg
             // 
-            btnCarregarImg.Location = new Point(594, 260);
+            btnCarregarImg.Image = Properties.Resources.Refresh;
+            btnCarregarImg.Location = new Point(590, 246);
             btnCarregarImg.Name = "btnCarregarImg";
-            btnCarregarImg.Size = new Size(124, 23);
-            btnCarregarImg.TabIndex = 16;
+            btnCarregarImg.Size = new Size(124, 63);
+            btnCarregarImg.TabIndex = 10;
             btnCarregarImg.Text = "Carregar Imagem";
+            btnCarregarImg.TextImageRelation = TextImageRelation.ImageAboveText;
             btnCarregarImg.UseVisualStyleBackColor = true;
             // 
             // btnSalvar
             // 
+            btnSalvar.Image = Properties.Resources.Save_As;
             btnSalvar.Location = new Point(66, 338);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(145, 33);
-            btnSalvar.TabIndex = 17;
+            btnSalvar.Size = new Size(145, 79);
+            btnSalvar.TabIndex = 12;
             btnSalvar.Text = "&Salvar";
+            btnSalvar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
             // btnEditar
             // 
+            btnEditar.Image = Properties.Resources.Edit_Alt;
             btnEditar.Location = new Point(290, 338);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(145, 33);
-            btnEditar.TabIndex = 17;
+            btnEditar.Size = new Size(145, 79);
+            btnEditar.TabIndex = 13;
             btnEditar.Text = "&Editar";
+            btnEditar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnEditar.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
+            btnCancelar.Image = Properties.Resources.Cancel;
             btnCancelar.Location = new Point(528, 338);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(145, 33);
-            btnCancelar.TabIndex = 17;
+            btnCancelar.Size = new Size(145, 79);
+            btnCancelar.TabIndex = 14;
             btnCancelar.Text = "&Cancelar";
+            btnCancelar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // chkDescontinuado
@@ -228,7 +238,7 @@
             chkDescontinuado.Location = new Point(234, 304);
             chkDescontinuado.Name = "chkDescontinuado";
             chkDescontinuado.Size = new Size(106, 19);
-            chkDescontinuado.TabIndex = 18;
+            chkDescontinuado.TabIndex = 11;
             chkDescontinuado.Text = "Descontinuado";
             chkDescontinuado.UseVisualStyleBackColor = true;
             // 
@@ -239,7 +249,7 @@
             comboBox1.Location = new Point(111, 210);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(405, 23);
-            comboBox1.TabIndex = 19;
+            comboBox1.TabIndex = 6;
             // 
             // listBox1
             // 
