@@ -202,13 +202,18 @@ namespace servicehub
                 dgvUsuarios.Rows[linha].Cells[0].Value = dr_1.GetInt32(0);
                 dgvUsuarios.Rows[linha].Cells[1].Value = dr_1.GetString(1);
                 dgvUsuarios.Rows[linha].Cells[2].Value = dr_1.GetString(2);
+                dgvUsuarios.Rows[linha].Cells[3].Value = dr_1.GetString(3);
+                dgvUsuarios.Rows[linha].Cells[4].Value = dr_1.GetString(4);
+                dgvUsuarios.Rows[linha].Cells[5].Value = dr_1.GetBoolean(5);
+                dgvUsuarios.Rows[linha].Cells[6].Value = dr_1.GetString(6);
+                dgvUsuarios.Rows[linha].Cells[7].Value = dr_1.GetString(7);
 
 
             }
             dr_1.Close();
 
 
-            
+
 
 
 
@@ -242,6 +247,11 @@ namespace servicehub
 
             }
             dr_2.Close();
+        }
+
+        private void dtgSolicitação_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

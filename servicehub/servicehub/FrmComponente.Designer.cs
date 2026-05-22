@@ -49,10 +49,10 @@
             clnSenha = new DataGridViewTextBoxColumn();
             clnAtivo = new DataGridViewCheckBoxColumn();
             dtgSolicitação = new DataGridView();
-            btnsolicitações = new Button();
             cln_ID_Solic = new DataGridViewTextBoxColumn();
             clnCliente_id = new DataGridViewTextBoxColumn();
             cln_descricao_problema = new DataGridViewTextBoxColumn();
+            btnsolicitações = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvServicos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgSolicitação).BeginInit();
@@ -236,16 +236,7 @@
             dtgSolicitação.RowHeadersVisible = false;
             dtgSolicitação.Size = new Size(503, 150);
             dtgSolicitação.TabIndex = 10;
-            // 
-            // btnsolicitações
-            // 
-            btnsolicitações.Location = new Point(548, 615);
-            btnsolicitações.Name = "btnsolicitações";
-            btnsolicitações.Size = new Size(93, 23);
-            btnsolicitações.TabIndex = 11;
-            btnsolicitações.Text = "Solicitações";
-            btnsolicitações.UseVisualStyleBackColor = true;
-            btnsolicitações.Click += btnsolicitações_Click;
+            dtgSolicitação.CellContentClick += dtgSolicitação_CellContentClick;
             // 
             // cln_ID_Solic
             // 
@@ -265,6 +256,16 @@
             cln_descricao_problema.Name = "cln_descricao_problema";
             cln_descricao_problema.ReadOnly = true;
             cln_descricao_problema.Width = 300;
+            // 
+            // btnsolicitações
+            // 
+            btnsolicitações.Location = new Point(548, 615);
+            btnsolicitações.Name = "btnsolicitações";
+            btnsolicitações.Size = new Size(93, 23);
+            btnsolicitações.TabIndex = 11;
+            btnsolicitações.Text = "Solicitações";
+            btnsolicitações.UseVisualStyleBackColor = true;
+            btnsolicitações.Click += btnsolicitações_Click;
             // 
             // FrmComponente
             // 
