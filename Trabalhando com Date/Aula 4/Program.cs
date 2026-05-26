@@ -59,9 +59,27 @@ namespace Aula_4
             //Console.WriteLine("Hoje:" + hoje);
             //Console.WriteLine("Mais 2 meses: " + hoje.AddYears(2));
 
-            Console.WriteLine("Digite uma data (dd/MM/yyyy)");
-            DateTime date = DateTime.Parse(Console.ReadLine());
-            Console.WriteLine("Você digitou:"+date.ToString("dd/MM/yyyy"));    
+
+            // Exemplo prático:
+            //Console.WriteLine("Digite uma data (dd/MM/yyyy)");
+            //DateTime date = DateTime.Parse(Console.ReadLine());
+            //Console.WriteLine("Você digitou:"+date.ToString("dd/MM/yyyy"));
+
+
+            // Exemplo prático 2 (idade):
+            //Console.WriteLine("Digite o ano de nascimento:");
+            //DateTime ano = int.Parse(Console.ReadLine());
+            //int idade = DateTime.Now.Year - ano;
+            //Console.WriteLine("idade: " + idade);
+
+            // Exemplo de todos os atributos:
+            DateTime inicio = new DateTime(2026, 05, 20);
+            DateTime fim = new DateTime(2026,05,25);
+            TimeSpan diferenca = fim - inicio;
+            Console.WriteLine( "Dias: " + diferenca.Days );
+            Console.WriteLine("Horas: " + diferenca.Hours);
+            Console.WriteLine("Minutos: " + diferenca.Minutes);
+            Console.WriteLine("Segundos: " + diferenca.Seconds);
 
         }
     }
