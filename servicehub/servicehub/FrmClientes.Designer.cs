@@ -209,7 +209,7 @@
             dgvClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientes.Columns.AddRange(new DataGridViewColumn[] { ClnSeq, Clnid, ClnNome, ClnCPF, ClnEmail, ClnTelefone, ClnAtivo, clnDataNas, clnDataCad });
-            dgvClientes.Location = new Point(39, 537);
+            dgvClientes.Location = new Point(40, 545);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
             dgvClientes.RowHeadersVisible = false;
