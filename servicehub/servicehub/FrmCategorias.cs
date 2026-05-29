@@ -36,7 +36,7 @@ namespace Servicehub
                 CarregaGrid();
             }
         }
-        private void CarregaGrid(string texto =" ")
+        private void CarregaGrid(string texto = " ")
         {
             dgvCategorias.Rows.Clear();
 
@@ -55,6 +55,53 @@ namespace Servicehub
             if (txtBuscar.Text.Length > 1)
             {
                 CarregaGrid(txtBuscar.Text);
+            }
+        }
+
+        private void dgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtId.Text = dgvCategorias.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtNome.Text = dgvCategorias.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtSigla.Text = dgvCategorias.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            Categoria cat = new Categoria(int.Parse(txtId.Text), txtNome.Text, txtSigla.Text);
+            if (cat.Atualizar())
+            {
+                txtId.Clear();
+                txtNome.Clear();
+                txtSigla.Clear();
+
+                CarregaGrid();
+
+                MessageBox.Show($"Categoria {cat.Id} alterada com sucesso!\nLista atualizada");
+            }
+            else
+            {
+                MessageBox.Show("Erro ao atualizar categoria!");
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtId.Text != string.Empty)
+            {
+                var resposat = MessageBox.Show($"Deseja excluir a categoria {txtNome.Text}-{txtId.Text}", "Exclusão de categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+                if (resposat == DialogResult.Yes)
+                {
+                    Categoria cat = new(int.Parse(txtId.Text));
+                    cat.Excluir();
+                    CarregaGrid();
+                }
+               
             }
         }
     }

@@ -1,36 +1,27 @@
-﻿using System;
-using System.Collections.Generic; //List<T> está aqui
-using System.Data;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using ServicehubClass;
-using Org.BouncyCastle.Asn1.Cmp;
-using System.Data; // connectionState, CommandType
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ServiceHubClass
 {
     public class Categoria
     {
-        // Atributos (Campos)
-        /*
-        private int id;
-        private string? nome;
-        private string? sigla;
-        readonly = SOMENTE LEITURA
-        */
-
-        // Propriedades | Criando Diretamente
+        // PROPRIEDADES
         public int Id { get; set; }
         public string? Nome { get; set; }
         public string? Sigla { get; set; }
 
-        // Construtores (Métodos)
+        // CONSTRUTORES
         public Categoria()
         {
             Id = 0;
+        }
+
+        public Categoria(int id)
+        {
+            Id = id;
         }
 
         public Categoria(string? nome, string? sigla)
@@ -46,80 +37,103 @@ namespace ServiceHubClass
             Sigla = sigla;
         }
 
-
-        // Métodos (Funcionalidades - RFs) - Inserir, Atualizar, Listar, obterPorId(id), Excluir(id)
-
-        // Não Retorna valor    
+        // INSERIR
         public void Inserir()
         {
-            // O método é chamado
-
             var cmd = Banco.Abrir();
+
             if (cmd.Connection.State == ConnectionState.Open)
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "sp_categoria_insert";
+
                 cmd.Parameters.AddWithValue("spnome", Nome);
                 cmd.Parameters.AddWithValue("spsigla", Sigla);
+
                 Id = Convert.ToInt32(cmd.ExecuteScalar());
+
                 cmd.Connection.Close();
             }
         }
 
+        // OBTER POR ID
         public static Categoria ObterPorId(int id)
         {
             Categoria cat = new();
+
             var cmd = Banco.Abrir();
+
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = $"select * from categorias where id = {id}";
+            cmd.CommandText = "SELECT * FROM categorias WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+
             var dr = cmd.ExecuteReader();
+
             if (dr.Read())
             {
-                // 
-                cat = new(dr.GetInt32(0), dr.GetString(1), dr.GetString(2));
+                cat = new Categoria(
+                    dr.GetInt32("id"),
+
+                    dr["nome"] != DBNull.Value
+                        ? dr["nome"].ToString()
+                        : "",
+
+                    dr["sigla"] != DBNull.Value
+                        ? dr["sigla"].ToString()
+                        : ""
+                );
             }
+
             dr.Close();
             cmd.Connection.Close();
+
             return cat;
         }
-        public static List<Categoria> ObterLista(string busca ="")
+
+        // LISTAR
+        public static List<Categoria> ObterLista(string busca = "")
         {
-            List<Categoria> categorias = new List<Categoria>();
+            List<Categoria> categorias = new();
 
             var cmd = Banco.Abrir();
 
             if (cmd.Connection.State == ConnectionState.Open)
             {
-                if (busca != "")
-                {
-                    // ERRADO
-                    // "SELECT * FROM categorias ORDER BY nome" + 
-                    // "where nome like '% "+busca+"%' order by nome";
+                cmd.CommandType = CommandType.Text;
 
-                    // ARRUMADO ↓
+                // COM BUSCA
+                if (!string.IsNullOrEmpty(busca))
+                {
                     cmd.CommandText =
-                        $"SELECT * FROM categorias " +   // ← tirou o ORDER BY daqui
-                        $"WHERE nome LIKE '%{busca}%' " + // ← WHERE ficou antes
-                        $"ORDER BY nome";                 
+                        "SELECT * FROM categorias " +
+                        "WHERE nome LIKE @busca " +
+                        "ORDER BY nome";
+
+                    cmd.Parameters.AddWithValue("@busca", "%" + busca + "%");
                 }
                 else
                 {
-                    cmd.CommandText = "SELECT * FROM categorias ORDER BY nome";
+                    cmd.CommandText =
+                        "SELECT * FROM categorias ORDER BY nome";
                 }
-
-                cmd.CommandType = CommandType.Text;
 
                 var dr = cmd.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    categorias.Add(
-                        new Categoria( // ← ARRUMADO (colocou o nome da classe)
-                            dr.GetInt32(0),
-                            dr.GetString(1),
-                            dr.GetString(2)
-                        )
+                    Categoria cat = new Categoria(
+                        dr.GetInt32("id"),
+
+                        dr["nome"] != DBNull.Value
+                            ? dr["nome"].ToString()
+                            : "",
+
+                        dr["sigla"] != DBNull.Value
+                            ? dr["sigla"].ToString()
+                            : ""
                     );
+
+                    categorias.Add(cat);
                 }
 
                 dr.Close();
@@ -128,31 +142,46 @@ namespace ServiceHubClass
 
             return categorias;
         }
+
+        // ATUALIZAR
         public bool Atualizar()
         {
-            // Como este método não é estático, precisamos considerar 
-            // que as propriedades já possuam valores atribuídos antes de chamá-lo
-
             bool atualizada = false;
-            if (Id < 1) return atualizada;
+
+            if (Id < 1)
+                return atualizada;
+
             var cmd = Banco.Abrir();
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_categoria_update";
-            //cmd.Parameters.Add("spid", MySqlDbType.Int32).Value = Id;
+
             cmd.Parameters.AddWithValue("spid", Id);
             cmd.Parameters.AddWithValue("spnome", Nome);
             cmd.Parameters.AddWithValue("spsigla", Sigla);
-            if (cmd.ExecuteNonQuery() > 0) atualizada = true;
+
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                atualizada = true;
+            }
+
             cmd.Connection.Close();
+
             return atualizada;
         }
-        public void Excluir(int id)
+
+        // EXCLUIR
+        public void Excluir()
         {
             var cmd = Banco.Abrir();
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_categoria_delete";
-            cmd.Parameters.AddWithValue("spid", id);
+
+            cmd.Parameters.AddWithValue("spid", Id);
+
             cmd.ExecuteNonQuery();
+
             cmd.Connection.Close();
         }
     }

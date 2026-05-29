@@ -82,6 +82,7 @@
             btnExcluir.Text = "E&xcluir";
             btnExcluir.TextImageRelation = TextImageRelation.ImageAboveText;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnPesquisar
             // 
@@ -117,6 +118,7 @@
             btnEdit.Text = "&Editar";
             btnEdit.TextImageRelation = TextImageRelation.ImageAboveText;
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnAdd
             // 
@@ -204,8 +206,11 @@
             dgvCategorias.Location = new Point(55, 227);
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
+            dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCategorias.Size = new Size(622, 195);
             dgvCategorias.TabIndex = 29;
+            dgvCategorias.CellClick += dgvCategorias_CellClick;
+            dgvCategorias.CellContentClick += dgvCategorias_CellContentClick;
             // 
             // Column1
             // 
