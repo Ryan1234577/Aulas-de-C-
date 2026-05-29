@@ -1,4 +1,4 @@
-﻿namespace servicehub
+﻿namespace Servicehub
 {
     partial class FrmNovoCliente
     {

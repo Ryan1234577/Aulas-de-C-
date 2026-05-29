@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace servicehub
+namespace Servicehub
 {
     public partial class FrmNovoCliente : Form
     {

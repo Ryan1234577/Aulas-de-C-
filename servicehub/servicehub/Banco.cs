@@ -1,40 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
 using ServiceHubClass;
 
-namespace ServiceHubClass
+
+using MySql.Data.MySqlClient;
+
+namespace Servicehub
 {
-    public static class Banco
+    public class Banco
     {
-        //string de conexão com o banco de dados (Mariadb)
+        
+
+        // -- String de conexão com o Banco de Dados (MariaDB)
         public static string? StrConn { get; set; }
 
-        // metodo para abrir a conexão com o banco de dados - entrega uma conexão aberta,
-        // no objetode comando Sql (um objeto do tipo MySqlCommand)
-        public static MySqlCommand Abrir(string strConn = "")
-        {
-            MySqlCommand cmd = new();
-            StrConn = strConn;
-            if (StrConn == string.Empty)
-                StrConn = $@"server=10.91.47.48;database=comercialdb01;user=root;password=P@ssw0rd";
+        /*
+         Método para abrir conexão com o banco - Entrega uma conexão aberta,
+         no objeto de comandos MySql (Um objeto do tipo MySqlCommand)
+        */
 
+        public static MySqlCommand Abrir(string strconn = "")
+        {
+            MySqlCommand cmd = new MySqlCommand();
+            // cmd - Objeto MySql
+            StrConn = strconn;
+            if (strconn == string.Empty)
+                // Expressão Regular
+                StrConn = $@"server = 10.91.47.51;database=comercialti101;user=root;password=P@ssw0rd";
             MySqlConnection cn = new(StrConn);
             try
             {
                 cn.Open();
                 cmd.Connection = cn;
+               // cn  
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
             return cmd;
         }
+        
+
     }
 }

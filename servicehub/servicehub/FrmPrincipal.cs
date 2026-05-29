@@ -1,3 +1,5 @@
+using Servicehub;
+
 namespace servicehub
 {
     public partial class FrmPrincipal : Form
@@ -7,41 +9,40 @@ namespace servicehub
             InitializeComponent();
         }
 
-        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //criar uma instancia do formulario listar clientes
+            // Criar uma instância do formulário Listar Clientes 
             FrmListaClientes listaClientes = new();
 
-            //associando o form listar clientes como filho do form principal
+            // Associando o form listar clientes como filho principal
             listaClientes.MdiParent = this;
 
-            //chama o formulario de clientes
-
+            // Chamar o form de cliente 
             listaClientes.Show();
         }
-
         private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmNovoCliente NovoCliente = new();
-            NovoCliente.MdiParent = this;
-            NovoCliente.Show();
+            //Criando instância do form novoCliente
+            FrmNovoCliente novoCliente = new();
+            novoCliente.MdiParent = this;
+            novoCliente.Show();
         }
 
         private void listarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FrmListarServico listarServico = new();
-            listarServico.MdiParent = this;
-            listarServico.Show();
+            FrmServicos listarServicos = new();
+            listarServicos.MdiParent = this;
+            listarServicos.Show();
         }
     }
 }
